@@ -1,0 +1,20 @@
+{
+    "version": "0.2",
+    "ignorePaths": [],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "words": [
+        "clk",
+        "dma",
+        "espressif",
+        "gpio",
+        "GRB",
+        "LOGI",
+        "LOGW",
+        "sdkconfig"
+    ],
+    "ignoreWords": [],
+    "import": [
+        "~/.config/cspell/cspell.json"
+    ]
+}
