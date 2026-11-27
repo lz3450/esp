@@ -1,18 +1,16 @@
 {
     "version": "0.2",
     "ignorePaths": [],
-    "dictionaryDefinitions": [],
-    "dictionaries": [],
-    "words": [
-        "clk",
-        "dma",
-        "espressif",
-        "gpio",
-        "GRB",
-        "LOGI",
-        "LOGW",
-        "sdkconfig"
+    "dictionaryDefinitions": [
+        {
+            "name": "esp",
+            "path": ".esp.txt"
+        }
     ],
+    "dictionaries": [
+        "esp"
+    ],
+    "words": [],
     "ignoreWords": [],
     "import": [
         "~/.config/cspell/cspell.json"
