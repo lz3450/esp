@@ -1,0 +1,95 @@
+menu "Device Scan Configuration"
+
+    config SCAN_I2C_ENABLE
+        bool "Scan the I2C bus"
+        default y
+
+    config SCAN_I2C_SDA_GPIO
+        int "I2C SDA GPIO"
+        range 0 39
+        default 21
+        depends on SCAN_I2C_ENABLE
+
+    config SCAN_I2C_SCL_GPIO
+        int "I2C SCL GPIO"
+        range 0 39
+        default 22
+        depends on SCAN_I2C_ENABLE
+
+    config SCAN_I2C_FREQ_HZ
+        int "I2C probe clock frequency (Hz)"
+        range 10000 400000
+        default 100000
+        depends on SCAN_I2C_ENABLE
+
+    config SCAN_SPI_ENABLE
+        bool "Scan for SPI devices (SD card, SPI flash, generic)"
+        default y
+
+    config SCAN_SPI_SCLK_GPIO
+        int "SPI SCLK GPIO"
+        range 0 39
+        default 18
+        depends on SCAN_SPI_ENABLE
+
+    config SCAN_SPI_MOSI_GPIO
+        int "SPI MOSI GPIO"
+        range 0 39
+        default 23
+        depends on SCAN_SPI_ENABLE
+
+    config SCAN_SPI_MISO_GPIO
+        int "SPI MISO GPIO"
+        range 0 39
+        default 19
+        depends on SCAN_SPI_ENABLE
+
+    config SCAN_SPI_FREQ_HZ
+        int "SPI probe clock frequency (Hz)"
+        range 100000 20000000
+        default 400000
+        depends on SCAN_SPI_ENABLE
+
+    config SCAN_SPI_LCD_CS_GPIO
+        int "LCD CS GPIO held high during SPI scan (-1 = none)"
+        range -1 39
+        default 14
+        depends on SCAN_SPI_ENABLE
+        help
+            The Fire's LCD and TF card share the SPI bus. The scanner holds the
+            LCD chip-select high so the LCD ignores the scan traffic. Set to -1
+            when the SPI bus pins are not the default LCD/TF bus.
+
+    config SCAN_SPI_CUSTOM_CS_GPIO
+        int "Additional CS GPIO to probe (-1 = none)"
+        range -1 39
+        default -1
+        depends on SCAN_SPI_ENABLE
+
+    config SCAN_UART_ENABLE
+        bool "Scan UART RX pins for serial devices"
+        default y
+
+    config SCAN_UART_PROBE_MS
+        int "Listen time per pin and baud rate (ms)"
+        range 100 2000
+        default 600
+        depends on SCAN_UART_ENABLE
+
+    config SCAN_UART_DUMMY_TX_GPIO
+        int "UART TX GPIO used while listening"
+        range 0 39
+        default 4
+        depends on SCAN_UART_ENABLE
+        help
+            The UART driver always routes a TX pin. GPIO4 is the TF card CS on
+            the Fire and is held high (deselected) while the scanner listens, so
+            it is safe as a dummy TX pin. Do not set this to a scanned RX pin.
+
+    config SCAN_UART_CUSTOM_RX_GPIO
+        int "Additional UART RX GPIO to probe (-1 = none)"
+        range -1 39
+        default -1
+        depends on SCAN_UART_ENABLE
+
+endmenu

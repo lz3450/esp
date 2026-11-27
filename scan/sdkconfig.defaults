@@ -1,0 +1,10 @@
+# M5Stack Fire v2.6 board defaults.
+#
+# PSRAM is deliberately left disabled: this project does not need it and the
+# Fire's PSRAM chip is wired to GPIO16/GPIO17, which the UART scan must avoid.
+
+# 16 MB flash (the ESP32 default of 2 MB would be wrong for this board).
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+
+# Board runs at 240 MHz.
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
